@@ -7,26 +7,51 @@ pythonのstr, tupleはイミュータブル(更新不可)なのでreversedが適
 listに型変換してreversedを適用後、joinでstrに戻す。
 """
 
-str01 = "stressed"
-print(''.join(list(reversed(str01))))
+str00 = "stressed"
+print(''.join(list(reversed(str00))))
 
 """
 01. 「パタトクカシーー」
 「パタトクカシーー」という文字列の1,3,5,7文字目を取り出して連結した文字列を得よ．
 """
+patatoku = "パタトクカシーー"
+str01 = ""
 
+for index, string in enumerate(patatoku):
+    if index % 2 == 1:
+        str01 += string
+
+print(str01)
 
 """
 02. 「パトカー」＋「タクシー」＝「パタトクカシーー」
 「パトカー」＋「タクシー」の文字を先頭から交互に連結して文字列「パタトクカシーー」を得よ．
 """
+pato = "パトカー"
+taku = "タクシー"
+str02 = ""
 
+for j in range(4):
+    str02 += pato[j]
+    str02 += taku[j]
+
+print(str02)
 
 """
 03. 円周率
 "Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics."
 という文を単語に分解し，各単語の（アルファベットの）文字数を先頭から出現順に並べたリストを作成せよ．
 """
+import re
+
+pi_gemstone = "Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics."
+pi_cut = re.sub("\.|,", "", pi_gemstone).split(" ")
+py_list = []
+
+for k in pi_cut:
+    py_list.append(len(k))
+
+print(py_list)
 
 """
 04. 元素記号
