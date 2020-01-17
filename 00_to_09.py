@@ -90,7 +90,32 @@ print(elements_list)
 05. n-gram
 与えられたシーケンス（文字列やリストなど）からn-gramを作る関数を作成せよ．この関数を用い，
 "I am an NLPer"という文から単語bi-gram，文字bi-gramを得よ．
+==============================
+point:
+list(string)で、stringを1文字ずつにバラしたlistが生成される。
+ちょっとだけエラーハンドリングもしててえらい。セキュアなコードですね(?)。
 """
+
+
+def make_gram(sentence, process_param):
+    n_gram_list = []
+
+    if process_param == "word":  # 単語bi-gram
+        sentences = sentence.split(" ")
+    elif process_param == "chara":  # 文字bi-gram
+        sentences = list(sentence)
+    else:
+        return "The parameter cannot be accepted"
+
+    for p in range(len(sentences) - 1):
+        if sentences[p + 1]:
+            n_gram_list.append(sentences[p] + sentences[p + 1])
+    return n_gram_list
+
+
+print(make_gram("I am an NLPer", "word"))
+print(make_gram("I am an NLPer", "chara"))
+print(make_gram("I am an NLPer", "error"))
 
 """
 06. 集合
