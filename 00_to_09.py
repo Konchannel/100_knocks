@@ -44,6 +44,7 @@ print(str02)
 ==============================
 point:
 ピリオドなど、正規表現でエスケープが必要な文字はなんとなくでいいから覚えておきたい
+だいたいバックスラッシュを付けてエスケープする
 """
 import re
 
@@ -61,7 +62,29 @@ print(py_list)
 "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause.
  Arthur King Can."という文を単語に分解し，1, 5, 6, 7, 8, 9, 15, 16, 19番目の単語は先頭の1文字，それ以外の単語は先頭に2文字を取り出し，
  取り出した文字列から単語の位置（先頭から何番目の単語か）への連想配列（辞書型もしくはマップ型）を作成せよ．
+ ==============================
+point:
+分割してゴミ(ピリオドなど)を取り除く処理に、先ほどは正規表現を使ったが
+今回はsplit後にrstripを使用している。
+余談だが、list型への要素追加はappend、dict型への要素追加はupdateで行う。
+enumerateでindexも取得している設計のためlistからdictに変更も容易い。
 """
+
+elements_gemstone = "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause.　Arthur King Can."
+get_only_one_numbers = {1, 5, 6, 7, 8, 9, 15, 16, 19}
+elements_list = []
+
+elements_splitted = elements_gemstone.split(" ")
+
+for index, m in enumerate(elements_splitted):
+    m = m.rstrip(".")
+    if int(index + 1) in get_only_one_numbers:
+        elements_list.append(m[0:1])
+        continue
+    else:
+        elements_list.append(m[0:2])
+
+print(elements_list)
 
 """
 05. n-gram
