@@ -97,7 +97,7 @@ list(string)で、stringを1文字ずつにバラしたlistが生成される。
 """
 
 
-def make_gram(sentence, process_param):
+def make_bi_gram(sentence, process_param):
     n_gram_list = []
 
     if process_param == "word":  # 単語bi-gram
@@ -113,15 +113,53 @@ def make_gram(sentence, process_param):
     return n_gram_list
 
 
-print(make_gram("I am an NLPer", "word"))
-print(make_gram("I am an NLPer", "chara"))
-print(make_gram("I am an NLPer", "error"))
+print(make_bi_gram("I am an NLPer", "word"))
+print(make_bi_gram("I am an NLPer", "chara"))
+print(make_bi_gram("I am an NLPer", "error"))
 
 """
 06. 集合
 "paraparaparadise"と"paragraph"に含まれる文字bi-gramの集合を，それぞれ, XとYとして求め，XとYの和集合，積集合，差集合を求めよ．
 さらに，'se'というbi-gramがXおよびYに含まれるかどうかを調べよ．
 """
+survey_target_str01 = "paraparaparadise"
+survey_target_str02 = "paragraph"
+
+X = set(make_bi_gram(survey_target_str01, "chara"))
+Y = set(make_bi_gram(survey_target_str02, "chara"))
+
+Unions = X.union(Y)
+Intersections = X.intersection(Y)
+Differences = X.difference(Y)
+
+""" # メソッドを使わず自前で実装した場合
+Unions = []
+Intersections = []
+Differences = []
+
+for r in make_gram(survey_target_str01, "chara"):
+    # process for make Unions
+    if r not in Unions:
+        Unions.append(r)
+    for s in make_gram(survey_target_str02, "chara"):
+        # process for make Unions
+        if s not in Unions:
+            Unions.append(s)
+
+        # process for make Intersections
+        if r == s and r not in Intersections:
+            Intersections.append(r)
+
+# process for make Differences
+Differences = [x for x in Unions if x not in Intersections]
+"""
+
+print(Unions)
+print(Intersections)
+print(Differences)
+
+print("se" in X)
+print("se" in Y)
 
 """
 07. テンプレートによる文生成
