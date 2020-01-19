@@ -121,6 +121,10 @@ print(make_bi_gram("I am an NLPer", "error"))
 06. 集合
 "paraparaparadise"と"paragraph"に含まれる文字bi-gramの集合を，それぞれ, XとYとして求め，XとYの和集合，積集合，差集合を求めよ．
 さらに，'se'というbi-gramがXおよびYに含まれるかどうかを調べよ．
+==============================
+point:
+標準ライブラリであるtypesにはunion, intersection, differenceのメソッドがある。
+なんかあっけなかったので自前でも書いてみた。
 """
 survey_target_str01 = "paraparaparadise"
 survey_target_str02 = "paragraph"
@@ -165,6 +169,12 @@ print("se" in Y)
 07. テンプレートによる文生成
 引数x, y, zを受け取り「x時のyはz」という文字列を返す関数を実装せよ．さらに，x=12, y="気温", z=22.4として，実行結果を確認せよ．
 """
+
+x = 12
+y = "気温"
+z = 22.4
+
+print("{}時の{}は{}".format(x, y, z))
 
 """
 08. 暗号文
