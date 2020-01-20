@@ -188,6 +188,13 @@ print(return_template_str(x, y, z))
 英小文字ならば(219 - 文字コード)の文字に置換
 その他の文字はそのまま出力
 この関数を用い，英語のメッセージを暗号化・復号化せよ．
+==============================
+point:
+asciiコード上で"a"は97、"z"は122である。
+よって、足した219から英子文字のasciiコードを引くと、対応した英子文字に暗号化される。
+(例えばaならz、bならy、cならx)
+islower()は文字列が英子文字か判別するメソッド。
+ordは文字をasciiコードに、chrはasciiコードを文字に変換するメソッド。
 """
 
 
@@ -203,7 +210,7 @@ def cipher(messages):
     return ''.join(cipher_messages)
 
 
-encryption_str = cipher("At Coder")
+encryption_str = cipher("At Coder-0123")
 decryption_str = cipher(encryption_str)
 
 print(encryption_str)
