@@ -221,4 +221,31 @@ print(decryption_str)
 スペースで区切られた単語列に対して，各単語の先頭と末尾の文字は残し，それ以外の文字の順序をランダムに並び替えるプログラムを作成せよ．
 ただし，長さが４以下の単語は並び替えないこととする．適当な英語の文（例えば"I couldn't believe that I could actually understand 
 what I was reading : the phenomenal power of the human mind ."）を与え，その実行結果を確認せよ．
+==============================
+point:
+random.sampleでは、抽選元となるリストから重複のないように指定個数ぶんだけ要素をランダムに取り出す。(そして出来た新しいリストを返す)
+pythonのスライスは新しいリストを作るため、random.sampleの引数にスライスを使用することもできる。
 """
+
+words_to_be_shuffle = "I couldn't believe that I could actually understand " \
+                      "what I was reading : the phenomenal power of the human mind ."
+
+
+def words_shuffle(words):
+    import random
+
+    word_list_to_be_shuffle = words.split(" ")
+    shuffled_word_list = []
+
+    for u in word_list_to_be_shuffle:
+        if len(u) <= 4:
+            shuffled_word_list.append(u)
+        else:
+            u_slice_shuffled = random.sample(u[1:-1], len(u[1:-1]))
+            shuffled_word = u[0] + "".join(u_slice_shuffled) + u[-1]
+            shuffled_word_list.append(shuffled_word)
+
+    return " ".join(shuffled_word_list)
+
+
+print(words_shuffle(words_to_be_shuffle))
