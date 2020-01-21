@@ -1,6 +1,16 @@
 """
 hightemp.txtは，日本の最高気温の記録を「都道府県」「地点」「℃」「日」のタブ区切り形式で格納したファイルである．以下の処理を行うプログラムを作成し，hightemp.txtを入力ファイルとして実行せよ．さらに，同様の処理をUNIXコマンドでも実行し，プログラムの実行結果を確認せよ．
+==============================
+point:
+ブラウザでhightemp.txtを開くと表示崩れが起きていたので一応utf-8指定で開いている。
 """
+
+import codecs
+temp_text = "./hightemp.txt"
+
+with codecs.open(temp_text, 'r', 'utf-8') as ht:
+    for line in ht:
+        print(line, end="")
 """
 10. 行数のカウント
 行数をカウントせよ．確認にはwcコマンドを用いよ．
