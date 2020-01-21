@@ -174,7 +174,12 @@ x = 12
 y = "気温"
 z = 22.4
 
-print("{}時の{}は{}".format(x, y, z))
+
+def return_template_str(x, y, z):
+    return "{}時の{}は{}".format(x, y, z)
+
+
+print(return_template_str(x, y, z))
 
 """
 08. 暗号文
@@ -184,6 +189,25 @@ print("{}時の{}は{}".format(x, y, z))
 その他の文字はそのまま出力
 この関数を用い，英語のメッセージを暗号化・復号化せよ．
 """
+
+
+def cipher(messages):
+    cipher_messages = []
+
+    for t in messages:
+        if t.islower():
+            cipher_messages.append(chr(219 - ord(t)))
+        else:
+            cipher_messages.append(t)
+
+    return ''.join(cipher_messages)
+
+
+encryption_str = cipher("At Coder")
+decryption_str = cipher(encryption_str)
+
+print(encryption_str)
+print(decryption_str)
 
 """
 09. Typoglycemia
