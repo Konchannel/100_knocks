@@ -8,14 +8,16 @@ point:
 import codecs
 temp_text = "./hightemp.txt"
 
-with codecs.open(temp_text, 'r', 'utf-8') as ht:
-    for line in ht:
-        print(line, end="")
 """
 10. 行数のカウント
 行数をカウントせよ．確認にはwcコマンドを用いよ．
 """
 
+with codecs.open(temp_text, 'r', 'utf-8') as ht:
+    num_line = 0
+    for line in ht:
+        num_line += 1
+    print(num_line)
 
 """
 11. タブをスペースに置換
