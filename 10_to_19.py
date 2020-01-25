@@ -2,11 +2,14 @@
 hightemp.txtは，日本の最高気温の記録を「都道府県」「地点」「℃」「日」のタブ区切り形式で格納したファイルである．以下の処理を行うプログラムを作成し，hightemp.txtを入力ファイルとして実行せよ．さらに，同様の処理をUNIXコマンドでも実行し，プログラムの実行結果を確認せよ．
 ==============================
 point:
-windows機にて実行しているため、以下に登場するコマンドは実行できてません...つらたん、macbookPro買お
+windows機にて実行しているため、以下に登場するコマンドは実行できてません...つらたん、macbookro買お
 """
 
 import codecs
 temp_text = "./hightemp.txt"
+with codecs.open(temp_text, 'r', 'utf-8') as ht:
+    for line in ht:
+        print(line)
 
 """
 10. 行数のカウント
@@ -29,24 +32,37 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
 point:
 比較のため、置換後のテキストは別ファイルに保存している。
 """
+
 with codecs.open(temp_text, 'r', 'utf-8') as ht:
     with codecs.open("./testfile.txt", 'w', 'utf-8') as test_text:
         for line in ht:
             test_text.write(line.replace('	', ' '))
-            print(line)
-
 
 """
 12. 1列目をcol1.txtに，2列目をcol2.txtに保存
 各行の1列目だけを抜き出したものをcol1.txtに，2列目だけを抜き出したものをcol2.txtとしてファイルに保存せよ．確認にはcutコマンドを用いよ．
 """
 
+with codecs.open(temp_text, 'r', 'utf-8') as ht:
+    with codecs.open("./col1.txt", 'w', 'utf-8') as col1:
+        with codecs.open("./col2.txt", 'w', 'utf-8') as col2:
+            for line in ht:
+                words = line.split('	')
+                col1.write(words[0] + '\n')
+                col2.write(words[1] + '\n')
 
 """
 13. col1.txtとcol2.txtをマージ
 12で作ったcol1.txtとcol2.txtを結合し，元のファイルの1列目と2列目をタブ区切りで並べたテキストファイルを作成せよ．確認にはpasteコマンドを用いよ．
 """
 
+with codecs.open("./col1.txt", 'r', 'utf-8') as col1:
+    with codecs.open("./col2.txt", 'r', 'utf-8') as col2:
+        with codecs.open("./merged_col1_and_col2.txt", 'w', 'utf-8') as merged:
+            for word_of_col1 in col1:
+                for word_of_col2 in col2:
+                    merged.write(word_of_col1 + '   ')
+                merged.write(word_of_col2 + '\n')
 
 """
 14. 先頭からN行を出力
