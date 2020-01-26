@@ -9,7 +9,8 @@ import codecs
 temp_text = "./hightemp.txt"
 with codecs.open(temp_text, 'r', 'utf-8') as ht:
     for line in ht:
-        print(line)
+        ...
+        # print(line)
 
 """
 10. 行数のカウント
@@ -69,6 +70,12 @@ with codecs.open("./col1.txt", 'r', 'utf-8') as col1:
 自然数Nをコマンドライン引数などの手段で受け取り，入力のうち先頭のN行だけを表示せよ．確認にはheadコマンドを用いよ．
 """
 
+line_num = int(input())
+
+with codecs.open(temp_text, 'r', 'utf-8') as ht:
+    for index, line in enumerate(ht):
+        if line_num > index:
+            print(line)
 
 """
 15. 末尾のN行を出力
