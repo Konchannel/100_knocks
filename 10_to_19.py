@@ -82,14 +82,26 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
 """
 15. 末尾のN行を出力
 自然数Nをコマンドライン引数などの手段で受け取り，入力のうち末尾のN行だけを表示せよ．確認にはtailコマンドを用いよ．
+==============================
+point:
+いい加減に、hightempを読み込む処理をメソッドに切り出した、もっと早くやればよかった。
 """
 
-get_line_num = int(input())
 
-with codecs.open(temp_text, 'r', 'utf-8') as ht:
-    for index, line in enumerate(ht):
-        if get_line_num == index:
-            print(line)
+def read_hightemp():
+    with codecs.open(temp_text, 'r', 'utf-8') as ht:
+        ht_lines = ht.readlines()
+        return ht_lines
+
+
+ht_lines = read_hightemp()
+n = int(input())
+
+
+for index, ht_line in enumerate(ht_lines):
+    if 0 >= len(ht_lines) - index - n:
+        print(ht_line)
+
 
 """
 16. ファイルをN分割する
