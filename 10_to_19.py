@@ -60,21 +60,23 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
 with codecs.open("./col1.txt", 'r', 'utf-8') as col1:
     with codecs.open("./col2.txt", 'r', 'utf-8') as col2:
         with codecs.open("./merged_col1_and_col2.txt", 'w', 'utf-8') as merged:
-            for word_of_col1 in col1:
-                for word_of_col2 in col2:
-                    merged.write(word_of_col1 + '   ')
-                merged.write(word_of_col2 + '\n')
+            col1_list = col1.readlines()
+            col2_list = col2.readlines()
+            for i in range(len(col1_list)):
+                split_col1 = col1_list[i].rstrip('\n')
+                split_col2 = col2_list[i].rstrip('\n')
+                merged.write(split_col1 + ' ' + split_col2 + '\n')
 
 """
 14. 先頭からN行を出力
 自然数Nをコマンドライン引数などの手段で受け取り，入力のうち先頭のN行だけを表示せよ．確認にはheadコマンドを用いよ．
 """
 
-line_num = int(input())
+get_lines_num = int(input())
 
 with codecs.open(temp_text, 'r', 'utf-8') as ht:
     for index, line in enumerate(ht):
-        if line_num > index:
+        if get_lines_num > index:
             print(line)
 
 """
@@ -82,6 +84,12 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
 自然数Nをコマンドライン引数などの手段で受け取り，入力のうち末尾のN行だけを表示せよ．確認にはtailコマンドを用いよ．
 """
 
+get_line_num = int(input())
+
+with codecs.open(temp_text, 'r', 'utf-8') as ht:
+    for index, line in enumerate(ht):
+        if get_line_num == index:
+            print(line)
 
 """
 16. ファイルをN分割する
