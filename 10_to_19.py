@@ -71,13 +71,13 @@ with codecs.open("./col1.txt", 'r', 'utf-8') as col1:
 14. 先頭からN行を出力
 自然数Nをコマンドライン引数などの手段で受け取り，入力のうち先頭のN行だけを表示せよ．確認にはheadコマンドを用いよ．
 """
-print("先頭から何行欲しいですか？")
+print("\n先頭から何行欲しいですか？:", end="")
 get_lines_num = int(input())
 
 with codecs.open(temp_text, 'r', 'utf-8') as ht:
     for index, line in enumerate(ht):
         if get_lines_num > index:
-            print(line)
+            print(line.rstrip('\n'))
 
 """
 15. 末尾のN行を出力
@@ -94,14 +94,14 @@ def read_hightemp():
         return ht_lines
 
 
-print("末尾から何行欲しいですか？")
+print("\n末尾から何行欲しいですか？:", end="")
 n = int(input())
 ht_lines = read_hightemp()
 
 
 for index, ht_line in enumerate(ht_lines):
     if 0 >= len(ht_lines) - index - n:
-        print(ht_line)
+        print(ht_line.rstrip('\n'))
 
 
 """
@@ -109,7 +109,7 @@ for index, ht_line in enumerate(ht_lines):
 自然数Nをコマンドライン引数などの手段で受け取り，入力のファイルを行単位でN分割せよ．同様の処理をsplitコマンドで実現せよ．
 """
 
-print("何行ずつに分けたいですか？")
+print("\n何行ずつに分けたいですか？", end="")
 split_group_num = int(input())
 splitted_ht_list = []
 ht_cluster = []
