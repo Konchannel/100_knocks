@@ -111,7 +111,6 @@ for index, ht_line in enumerate(ht_lines):
 
 print("\n何行ずつに分けたいですか？", end="")
 split_group_num = int(input())
-splitted_ht_list = []
 ht_cluster = []
 splitted_line = ''
 
@@ -131,6 +130,11 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
 1列目の文字列の種類（異なる文字列の集合）を求めよ．確認にはsort, uniqコマンドを用いよ．
 """
 
+ht_lines = read_hightemp()
+
+for ht_line in ht_lines:
+    print(set(ht_line))
+    break
 
 """
 18. 各行を3コラム目の数値の降順にソート
