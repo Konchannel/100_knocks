@@ -119,7 +119,7 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
     ht_cluster = ht.read().split('\n')
     for line_index, ht_line in enumerate(ht_cluster):
         splitted_line += ht_line + '\n'
-        if line_index % split_group_num == 0:
+        if (line_index + 1) % split_group_num == 0:
             print(splitted_line)
             splitted_line = ''
     if splitted_line is not '':
