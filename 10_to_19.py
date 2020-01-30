@@ -134,6 +134,7 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
 
 for ht_line in ht_lines:
     print(set(ht_line))
+    print()
     break
 
 """
@@ -149,9 +150,17 @@ for index, ht in enumerate(ht_lines):
     ht_columns.append(list(re.split('   | |\t', ht.rstrip())))
 
 print(sorted(ht_columns, key=lambda ht_val: ht_val[2]))
+print()
 
 
 """
 19. 各行の1コラム目の文字列の出現頻度を求め，出現頻度の高い順に並べる
 各行の1列目の文字列の出現頻度を求め，その高い順に並べて表示せよ．確認にはcut, uniq, sortコマンドを用いよ．
 """
+
+import collections
+
+for ht_line in ht_lines:
+    ht_counter = collections.Counter(ht_line)
+    values, counts = zip(*ht_counter.most_common())
+    print(values)
