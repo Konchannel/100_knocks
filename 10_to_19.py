@@ -48,7 +48,7 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
     with codecs.open("./col1.txt", 'w', 'utf-8') as col1:
         with codecs.open("./col2.txt", 'w', 'utf-8') as col2:
             for line in ht:
-                words = line.split('	')
+                words = line.split(' ')
                 col1.write(words[0] + '\n')
                 col2.write(words[1] + '\n')
 
