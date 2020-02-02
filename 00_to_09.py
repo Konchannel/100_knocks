@@ -6,6 +6,9 @@ point:
 pythonのstr, tupleはイミュータブル(更新不可)なのでreversedが適用できない。
 listに型変換してreversedを適用後、joinでstrに戻す実装をしていた。
 しかしスライスの指定によって、逆順にprintしていくことでも実装可能だった。
+
+スライスは[start:stop:step]で指定していく。stopに指定した場所は含まれないことに注意。
+また、全体を指定する場合はstartとstopは省略可能。
 """
 
 str00 = "stressed"
@@ -17,15 +20,21 @@ print(str00[::-1])
 """
 01. 「パタトクカシーー」
 「パタトクカシーー」という文字列の1,3,5,7文字目を取り出して連結した文字列を得よ．
+==============================
+point:
+スライスの応用。
 """
 patatoku = "パタトクカシーー"
 str01 = ""
 
 for index, string in enumerate(patatoku):
-    if index % 2 == 1:
+    if index % 2 == 0:
         str01 += string
 
 print(str01)
+
+# -Improvement
+print(patatoku[::2])
 
 """
 02. 「パトカー」＋「タクシー」＝「パタトクカシーー」
