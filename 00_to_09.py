@@ -4,11 +4,15 @@
 ==============================
 point:
 pythonのstr, tupleはイミュータブル(更新不可)なのでreversedが適用できない。
-listに型変換してreversedを適用後、joinでstrに戻す。
+listに型変換してreversedを適用後、joinでstrに戻す実装をしていた。
+しかしスライスの指定によって、逆順にprintしていくことでも実装可能だった。
 """
 
 str00 = "stressed"
 print(''.join(list(reversed(str00))))
+
+# -Improvement
+print(str00[::-1])
 
 """
 01. 「パタトクカシーー」
