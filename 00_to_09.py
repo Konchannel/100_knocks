@@ -51,9 +51,7 @@ for j in range(4):
 print(str02)
 
 # -Improvement
-result = ''
-for (a, b) in zip(pato, taku):
-    result += a + b
+result = ''.join(i+j for i,j in zip(pato, taku))
 print(result)
 
 """
