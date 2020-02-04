@@ -7,6 +7,7 @@ pythonのstr, tupleはイミュータブル(更新不可)なのでreversedが適
 listに型変換してreversedを適用後、joinでstrに戻す実装をしていた。
 しかしスライスの指定によって、逆順にprintしていくことでも実装可能だった。
 
+Improvement：
 スライスは[start:stop:step]で指定していく。stopに指定した場所は含まれないことに注意。
 また、全体を指定する場合はstartとstopは省略可能。
 """
@@ -14,14 +15,14 @@ listに型変換してreversedを適用後、joinでstrに戻す実装をして�
 str00 = "stressed"
 print(''.join(list(reversed(str00))))
 
-# -Improvement
+# Improvement
 print(str00[::-1])
 
 """
 01. 「パタトクカシーー」
 「パタトクカシーー」という文字列の1,3,5,7文字目を取り出して連結した文字列を得よ．
 ==============================
-point:
+Improvement:
 スライスの応用。
 """
 patatoku = "パタトクカシーー"
@@ -33,12 +34,16 @@ for index, string in enumerate(patatoku):
 
 print(str01)
 
-# -Improvement
+# Improvement
 print(patatoku[::2])
 
 """
 02. 「パトカー」＋「タクシー」＝「パタトクカシーー」
 「パトカー」＋「タクシー」の文字を先頭から交互に連結して文字列「パタトクカシーー」を得よ．
+==============================
+Improvement:
+zip()関数は、複数のリストやタプルを要素の順番毎にまとめて2次元タプルで返す。
+それをリスト内包表記で取り出し、joinしている。
 """
 pato = "パトカー"
 taku = "タクシー"
@@ -50,8 +55,8 @@ for j in range(4):
 
 print(str02)
 
-# -Improvement
-result = ''.join(i+j for i,j in zip(pato, taku))
+# Improvement
+result = ''.join(i+j for i, j in zip(pato, taku))
 print(result)
 
 """
@@ -62,6 +67,10 @@ print(result)
 point:
 ピリオドなど、正規表現でエスケープが必要な文字はなんとなくでいいから覚えておきたい
 だいたいバックスラッシュを付けてエスケープする
+
+Improvement:
+isalpha()関数でアルファベットのみ数える、のほうがバグ少なそう。
+あるいは正規表現でも。
 """
 import re
 
@@ -73,6 +82,12 @@ for k in pi_cut:
     py_list.append(len(k))
 
 print(py_list)
+
+
+# Improvement
+for xx in pi_gemstone.split(' '):
+    print(len(re.sub("[^a-zA-Z]+", "", xx)), end=',')
+print()
 
 """
 04. 元素記号
