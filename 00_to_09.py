@@ -100,10 +100,14 @@ point:
 今回はsplit後にrstripを使用している。
 余談だが、list型への要素追加はappend、dict型への要素追加はupdateで行う。
 enumerateでindexも取得している設計のためlistからdictに変更も容易い。
+
+Improvement:
+if in句の書き方でよりきれいに出来た。それとenumerateは始まりの数字を指定できる。初めて知った。
+それとdict型or map型っての見落としていて普通にListで作ってしまっていた。せっかちなの反省。
 """
 
 elements_gemstone = "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause.　Arthur King Can."
-get_only_one_numbers = {1, 5, 6, 7, 8, 9, 15, 16, 19}
+get_only_one_numbers = (1, 5, 6, 7, 8, 9, 15, 16, 19)
 elements_list = []
 
 elements_splitted = elements_gemstone.split(" ")
@@ -117,6 +121,19 @@ for index, m in enumerate(elements_splitted):
         elements_list.append(m[0:2])
 
 print(elements_list)
+
+
+# Improvement
+
+elements_dict = {}
+
+for num, word in enumerate(elements_splitted, 1):
+    if num in get_only_one_numbers:
+        elements_dict[word[0:1]] = num
+    else:
+        elements_dict[word[0:2]] = num
+
+print(elements_dict)
 
 """
 05. n-gram
