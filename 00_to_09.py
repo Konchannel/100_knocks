@@ -103,7 +103,7 @@ enumerateでindexも取得している設計のためlistからdictに変更も�
 
 Improvement:
 if in句の書き方でよりきれいに出来た。それとenumerateは始まりの数字を指定できる。初めて知った。
-それとdict型or map型っての見落としていて普通にListで作ってしまっていた。せっかちなの反省。
+それとdictっての見落としていて普通にListで作ってしまっていた。せっかちなの反省。(あとマップ型って言い方も初めて聞いた)
 """
 
 elements_gemstone = "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause.　Arthur King Can."
@@ -142,7 +142,10 @@ print(elements_dict)
 ==============================
 point:
 list(string)で、stringを1文字ずつにバラしたlistが生成される。
-ちょっとだけエラーハンドリングもしててえらい。セキュアなコードですね(?)。
+ちょっとだけエラーハンドリングもしててえらい。
+
+Improvement:
+単語n-gramをちょっと間違えていた。単語の2次元リストで返してあげなきゃだったっぽい。
 """
 
 
@@ -165,6 +168,19 @@ def make_bi_gram(sentence, process_param):
 print(make_bi_gram("I am an NLPer", "word"))
 print(make_bi_gram("I am an NLPer", "chara"))
 print(make_bi_gram("I am an NLPer", "error"))
+
+
+# Improvement
+
+def n_gram(target, a):
+    ans_list = []
+    for b in range(len(target) + 1 - a):
+        ans_list.append(target[b:b + a])
+    return ans_list
+
+
+print(n_gram("I am an NLPer", 2))
+print(n_gram("I am an NLPer".split(' '), 2))
 
 """
 06. 集合
