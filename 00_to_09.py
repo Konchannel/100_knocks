@@ -190,6 +190,10 @@ print(n_gram("I am an NLPer".split(' '), 2))
 point:
 標準ライブラリであるtypesにはunion, intersection, differenceのメソッドがある。
 なんかあっけなかったので自前でも書いてみた。
+
+Improvement:
+改善というほどではなく、別解として。
+setを集合として扱うこともでき、and, or等で和集合や積集合を求めることもできる。
 """
 survey_target_str01 = "paraparaparadise"
 survey_target_str02 = "paragraph"
@@ -229,6 +233,12 @@ print(Differences)
 
 print("se" in X)
 print("se" in Y)
+
+# Improvement
+print(str(X | Y))
+print(str(X & Y))
+print(str(X - Y))
+
 
 """
 07. テンプレートによる文生成
