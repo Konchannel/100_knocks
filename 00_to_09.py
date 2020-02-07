@@ -243,6 +243,9 @@ print(str(X - Y))
 """
 07. テンプレートによる文生成
 引数x, y, zを受け取り「x時のyはz」という文字列を返す関数を実装せよ．さらに，x=12, y="気温", z=22.4として，実行結果を確認せよ．
+==============================
+Improvement:
+formatを使うときは、そのキーワード引数に、どのような値が入るか分かりやすい名前を付けてあげると親切なコードになるよね。
 """
 
 x = 12
@@ -255,6 +258,14 @@ def return_template_str(x, y, z):
 
 
 print(return_template_str(x, y, z))
+
+
+# Improvement
+def return_temp_str(xxx, yy, zz):
+    return "{hour}時の{target}は{value}".format(hour=xxx, target=yy, value=zz)
+
+
+print(return_temp_str(12, "気温", 22.4))
 
 """
 08. 暗号文
