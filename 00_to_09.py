@@ -281,6 +281,9 @@ asciiコード上で"a"は97、"z"は122である。
 (例えばaならz、bならy、cならx)
 islower()は文字列が英子文字か判別するメソッド。
 ordは文字をasciiコードに、chrはasciiコードを文字に変換するメソッド。
+
+Improvement:
+listにappendしたあとjoinしなくても、str += str　を使ったほうがスマートでした。
 """
 
 
@@ -301,6 +304,26 @@ decryption_str = cipher(encryption_str)
 
 print(encryption_str)
 print(decryption_str)
+
+# Improvement
+
+
+def cipher2(messages):
+    cipher_message2 = ""
+
+    for t2 in messages:
+        if t2.islower():
+            cipher_message2 += chr(219 - ord(t2))
+        else:
+            cipher_message2 += t2
+
+    return cipher_message2
+
+
+enc = cipher2("Isucon-2020")
+dec = cipher2(enc)
+print(enc)
+print(dec)
 
 """
 09. Typoglycemia
