@@ -334,6 +334,16 @@ what I was reading : the phenomenal power of the human mind ."）を与え，そ
 point:
 random.sampleでは、抽選元となるリストから重複のないように指定個数ぶんだけ要素をランダムに取り出す。(そして出来た新しいリストを返す)
 pythonのスライスは新しいリストを作るため、random.sampleの引数にスライスを使用することもできる。
+
+Improvement:
+lists = line.split(' ')
+for word in list:
+とするよりも、
+for word in line.split(' '):
+としたほうがスマート。
+さらに、random.sampleは、シャッフルした文字列を返すが、
+random.shuffleは元のリスト自体をシャッフルする。
+次使わない変数ならば、破壊的なほうがごちゃごちゃせずに済むのかもしれない。（再利用性は抜きにして。）
 """
 
 words_to_be_shuffle = "I couldn't believe that I could actually understand " \
@@ -358,3 +368,23 @@ def words_shuffle(words):
 
 
 print(words_shuffle(words_to_be_shuffle))
+
+# Improvement
+
+
+def typoglycemia(target):
+    import random
+
+    results = []
+    for word in target.split(' '):
+        if len(word) <= 4:
+            results.append(word)
+        else:
+            chr_list = list(word[1:-1])
+            random.shuffle(chr_list)
+            results.append(word[0] + ''.join(chr_list) + word[-1])
+
+    return ' '.join(results)
+
+
+print(typoglycemia(words_to_be_shuffle))
