@@ -18,6 +18,9 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
 ==============================
 point:
 ブラウザでhightemp.txtを開くと表示崩れが起きていたので一応utf-8指定で開いている。
+
+Improvement:
+長さを計るだけなら、readlinesでとったlistの長さを見ればいい。for文で回すだけ遅いかも。
 """
 
 with codecs.open(temp_text, 'r', 'utf-8') as ht:
@@ -25,6 +28,11 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
     for line in ht:
         num_line += 1
     print(num_line)
+
+# Improvement
+
+with codecs.open(temp_text, 'r', 'utf-8') as ht:
+    print(len(ht.readlines()))
 
 """
 11. タブをスペースに置換
