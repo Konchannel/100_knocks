@@ -40,12 +40,20 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
 ==============================
 point:
 比較のため、置換後のテキストは別ファイルに保存している。
+Improvement:
+codecs.openモジュールを使ううまみは、python2でエンコードしたファイルを開くときらしい。
+今回はうまみがなさそう。普通にopenでよさげ。
 """
 
 with codecs.open(temp_text, 'r', 'utf-8') as ht:
     with codecs.open("./testfile.txt", 'w', 'utf-8') as test_text:
         for line in ht:
             test_text.write(line.replace('	', ' '))
+
+# Improvement
+with open(temp_text, encoding='utf-8') as tt:
+    for line in tt:
+        print(line.replace('	', ' '))
 
 """
 12. 1列目をcol1.txtに，2列目をcol2.txtに保存
