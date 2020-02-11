@@ -40,6 +40,7 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
 ==============================
 point:
 比較のため、置換後のテキストは別ファイルに保存している。
+
 Improvement:
 codecs.openモジュールを使ううまみは、python2でエンコードしたファイルを開くときらしい。
 今回はうまみがなさそう。普通にopenでよさげ。
@@ -58,6 +59,11 @@ with open(temp_text, encoding='utf-8') as tt:
 """
 12. 1列目をcol1.txtに，2列目をcol2.txtに保存
 各行の1列目だけを抜き出したものをcol1.txtに，2列目だけを抜き出したものをcol2.txtとしてファイルに保存せよ．確認にはcutコマンドを用いよ．
+==============================
+Improvement:
+withの中にopen関数を複数入れることができるらしい。すごい。
+それと、open関数で開こうとしたファイルがない場合作成し、ある場合は上書きする命令をmode='w'で実現できる。
+引数名の指定が必要な分、codecs.openよりコードが長くなっちゃう。(処理時間は早いっぽい？)
 """
 
 with codecs.open(temp_text, 'r', 'utf-8') as ht:
@@ -67,6 +73,16 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
                 words = line.split(' ')
                 col1.write(words[0] + '\n')
                 col2.write(words[1] + '\n')
+
+# Improvement
+
+with open(temp_text, encoding='utf-8') as ht, open("./col1_imp.txt", mode='w', encoding='utf-8') as col1_i,\
+        open("./col2_imp.txt", mode='w', encoding='utf-8') as col2_i:
+    for line in ht:
+        words = line.split(' ')
+        col1_i.write(words[0] + '\n')
+        col2_i.write(words[1] + '\n')
+
 
 """
 13. col1.txtとcol2.txtをマージ
