@@ -83,10 +83,12 @@ with open(temp_text, encoding='utf-8') as ht, open("./col1_imp.txt", mode='w', e
         col1_i.write(words[0] + '\n')
         col2_i.write(words[1] + '\n')
 
-
 """
 13. col1.txtとcol2.txtをマージ
 12で作ったcol1.txtとcol2.txtを結合し，元のファイルの1列目と2列目をタブ区切りで並べたテキストファイルを作成せよ．確認にはpasteコマンドを用いよ．
+==============================
+Improvement:
+複数リストから同時に値を取得するzip関数を使ってより見やすくスマートに。
 """
 
 with codecs.open("./col1.txt", 'r', 'utf-8') as col1:
@@ -98,6 +100,14 @@ with codecs.open("./col1.txt", 'r', 'utf-8') as col1:
                 split_col1 = col1_list[i].rstrip('\n')
                 split_col2 = col2_list[i].rstrip('\n')
                 merged.write(split_col1 + ' ' + split_col2 + '\n')
+
+# Improvement
+
+with open("merged_imp.txt", mode='w', encoding='utf-8') as m_i,\
+        open("./col1_imp.txt", mode='r', encoding='utf-8') as col1_i,\
+        open("./col2_imp.txt", mode='r', encoding='utf-8') as col2_i:
+    for one_i, two_i in zip(col1_i, col2_i):
+        m_i.write(one_i.rstrip() + "\t" + two_i)
 
 """
 14. 先頭からN行を出力
