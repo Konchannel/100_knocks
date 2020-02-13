@@ -112,6 +112,9 @@ with open("merged_imp.txt", mode='w', encoding='utf-8') as m_i,\
 """
 14. 先頭からN行を出力
 自然数Nをコマンドライン引数などの手段で受け取り，入力のうち先頭のN行だけを表示せよ．確認にはheadコマンドを用いよ．
+==============================
+Improvement:
+ループを使うなら、breakのタイミングも考えて設置しよう。
 """
 print("\n先頭から何行欲しいですか？:", end="")
 get_lines_num = int(input())
@@ -120,6 +123,15 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
     for index, line in enumerate(ht):
         if get_lines_num > index:
             print(line.rstrip('\n'))
+
+# Improvement
+
+with codecs.open(temp_text, 'r', 'utf-8') as ht:
+    for index, line in enumerate(ht):
+        if get_lines_num > index:
+            print(line.rstrip('\n'))
+        else:
+            break
 
 """
 15. 末尾のN行を出力
