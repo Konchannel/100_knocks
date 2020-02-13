@@ -114,7 +114,7 @@ with open("merged_imp.txt", mode='w', encoding='utf-8') as m_i,\
 自然数Nをコマンドライン引数などの手段で受け取り，入力のうち先頭のN行だけを表示せよ．確認にはheadコマンドを用いよ．
 ==============================
 Improvement:
-ループを使うなら、breakのタイミングも考えて設置しよう。
+ループを使うなら、breakのタイミングも考えて設置したい。
 """
 print("\n先頭から何行欲しいですか？:", end="")
 get_lines_num = int(input())
