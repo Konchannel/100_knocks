@@ -160,9 +160,9 @@ for index, ht_line in enumerate(ht_lines):
         print(ht_line.rstrip('\n'))
 
 # Improvement
-
-for ht_line in ht_lines[-n:]:
-    print(ht_line.rstrip('\n'))
+if n > 0:
+    for ht_line in ht_lines[-n:]:
+        print(ht_line.rstrip('\n'))
 
 """
 16. ファイルをN分割する
