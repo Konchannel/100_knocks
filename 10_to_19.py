@@ -139,6 +139,8 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
 ==============================
 point:
 いい加減に、hightempを読み込む処理をメソッドに切り出した、もっと早くやればよかった。
+Improvement:
+全て読み込んで該当の部分だけprintするよりも、該当の部分だけ読み込んでprintしたほうが早い。スライスってべんりだなぁ
 """
 
 
@@ -157,6 +159,10 @@ for index, ht_line in enumerate(ht_lines):
     if 0 >= len(ht_lines) - index - n:
         print(ht_line.rstrip('\n'))
 
+# Improvement
+
+for ht_line in ht_lines[-n:]:
+    print(ht_line.rstrip('\n'))
 
 """
 16. ファイルをN分割する
