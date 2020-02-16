@@ -199,7 +199,9 @@ if split_group_num > 0:
 
         for split_index in range(split_group_num):
             # print(tt_main[one_group_num * split_index: one_group_num * (split_index + 1)])
-            print(tt_main[one_group_num * split_index: one_group_num * (split_index + 1)])
+            for i in tt_main[one_group_num * split_index: one_group_num * (split_index + 1)]:
+                print(i, end="")
+            print("")
 
     # 全8行のテキストを3分割するとき、3,3,2　と表示させたい。 / と%をうまく使って実現できそうだけどもー
 
