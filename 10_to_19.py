@@ -170,7 +170,7 @@ if n > 0:
 """
 
 print("\n何行ずつに分けたいですか？", end="")
-split_group_num = int(input())
+split_lines_num = int(input())
 ht_cluster = []
 splitted_line = ''
 
@@ -178,11 +178,31 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
     ht_cluster = ht.read().split('\n')
     for line_index, ht_line in enumerate(ht_cluster):
         splitted_line += ht_line + '\n'
-        if (line_index + 1) % split_group_num == 0:
+        if (line_index + 1) % split_lines_num == 0:
             print(splitted_line)
             splitted_line = ''
     if splitted_line is not '':
         print(splitted_line)
+
+# Improvement
+
+print("\n何ブロックに分けたいですか？", end="")
+split_group_num = int(input())
+
+if split_group_num > 0:
+    with open(temp_text, mode="r", encoding="utf-8") as tt:
+        import math
+
+        tt_main = tt.readlines()
+        total_range = len(tt_main)
+        one_group_num = math.ceil(total_range / split_group_num)
+
+        for split_index in range(split_group_num):
+            # print(tt_main[one_group_num * split_index: one_group_num * (split_index + 1)])
+            print(tt_main[one_group_num * split_index: one_group_num * (split_index + 1)])
+
+    # 全8行のテキストを3分割するとき、3,3,2　と表示させたい。 / と%をうまく使って実現できそうだけどもー
+
 
 
 """
