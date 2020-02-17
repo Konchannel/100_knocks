@@ -224,6 +224,22 @@ if split_group_num > 0:
                     print(i, end="")
         print("")
 
+# Improvement-03
+
+if split_group_num > 0:
+    with open(temp_text, mode="r", encoding="utf-8") as tt:
+        import math
+
+        tt_main = tt.readlines()
+        total_range = len(tt_main)
+        one_group_num = math.ceil(total_range / split_group_num)
+
+        for tt_index, tt_value in enumerate(tt_main, start=1):
+            print(tt_value.rstrip())
+            if tt_index % one_group_num == 0:
+                print("")
+        print("")
+
 """
 17. １列目の文字列の異なり
 1列目の文字列の種類（異なる文字列の集合）を求めよ．確認にはsort, uniqコマンドを用いよ．
