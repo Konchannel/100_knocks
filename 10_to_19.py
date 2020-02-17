@@ -198,14 +198,31 @@ if split_group_num > 0:
         one_group_num = math.ceil(total_range / split_group_num)
 
         for split_index in range(split_group_num):
-            # print(tt_main[one_group_num * split_index: one_group_num * (split_index + 1)])
             for i in tt_main[one_group_num * split_index: one_group_num * (split_index + 1)]:
                 print(i, end="")
             print("")
 
-    # 全8行のテキストを3分割するとき、3,3,2　と表示させたい。 / と%をうまく使って実現できそうだけどもー
+# Improvement-02
+# 全8行のテキストを3分割するとき、3,3,2　と表示させたい。 / と%をうまく使って実現できそうだけどもー
 
+if split_group_num > 0:
+    with open(temp_text, mode="r", encoding="utf-8") as tt:
+        import math
 
+        tt_main = tt.readlines()
+        total_range = len(tt_main)
+        one_group_num = math.ceil(total_range / split_group_num)
+
+        for split_index in range(split_group_num):
+            if total_range / one_group_num:
+                slice_start = one_group_num * split_index
+                for i in tt_main[slice_start: slice_start + one_group_num]:
+                    print(i, end="")
+                print("")
+            else:
+                for i in tt_main[slice_start: slice_start + total_range % one_group_num]:
+                    print(i, end="")
+        print("")
 
 """
 17. １列目の文字列の異なり
