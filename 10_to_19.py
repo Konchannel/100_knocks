@@ -207,11 +207,13 @@ if split_group_num > 0:
         one_group_num = math.ceil(total_range / split_group_num)
 
         for split_index in range(split_group_num):
-            for i in tt_main[one_group_num * split_index: one_group_num * (split_index + 1)]:
+            slice_start = one_group_num * split_index
+            for i in tt_main[slice_start: slice_start + one_group_num]:
                 print(i, end="")
             print("")
 
 # Improvement-02
+print("")
 
 if split_group_num > 0:
     with open(temp_text, mode="r", encoding="utf-8") as tt:
@@ -230,9 +232,9 @@ if split_group_num > 0:
             else:
                 for i in tt_main[slice_start: slice_start + total_range % one_group_num]:
                     print(i, end="")
-        print("")
 
 # Improvement-03
+print("")
 
 if split_group_num > 0:
     with open(temp_text, mode="r", encoding="utf-8") as tt:
