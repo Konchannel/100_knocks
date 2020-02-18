@@ -167,6 +167,15 @@ if n > 0:
 """
 16. ファイルをN分割する
 自然数Nをコマンドライン引数などの手段で受け取り，入力のファイルを行単位でN分割せよ．同様の処理をsplitコマンドで実現せよ．
+==============================
+Improvement-01:
+スライス指定ではIndexErrorが発生しないことを利用した実装
+Improvement-02:
+Errorも出ないように実装した。やや冗長。
+Improvement-03:
+シンプルにはなったけど、計算量は増えたっぽい。つらいー
+
+/ と % をうまく使って実現できそうだけども、それは今後の課題とする。
 """
 
 print("\n何行ずつに分けたいですか？", end="")
@@ -184,7 +193,7 @@ with codecs.open(temp_text, 'r', 'utf-8') as ht:
     if splitted_line is not '':
         print(splitted_line)
 
-# Improvement
+# Improvement-01
 
 print("\n何ブロックに分けたいですか？", end="")
 split_group_num = int(input())
@@ -203,7 +212,6 @@ if split_group_num > 0:
             print("")
 
 # Improvement-02
-# 全8行のテキストを3分割するとき、3,3,2　と表示させたい。 / と%をうまく使って実現できそうだけどもー
 
 if split_group_num > 0:
     with open(temp_text, mode="r", encoding="utf-8") as tt:
