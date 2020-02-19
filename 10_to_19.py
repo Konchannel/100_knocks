@@ -278,9 +278,17 @@ print(ken_unique)
 """
 18. 各行を3コラム目の数値の降順にソート
 各行を3コラム目の数値の逆順で整列せよ（注意: 各行の内容は変更せずに並び替えよ）．確認にはsortコマンドを用いよ（この問題はコマンドで実行した時の結果と合わなくてもよい）．
+==============================
+Improvement:
+split()で分割区切りになるのは、タブやスペースなので、正規表現せずともよかった。
+問題文の
+> 注意: 各行の内容は変更せずに並び替えよ
+っていうのは、 /n もとっちゃだめってことなんだろうか。なーんか不格好だけど指定されてるので変にいじらないようにする。
 """
 
+print()
 # ht_lines = read_hightemp()
+
 ht_columns = []
 import re
 
@@ -289,6 +297,11 @@ for index, ht in enumerate(ht_lines):
 
 print(sorted(ht_columns, key=lambda ht_val: ht_val[2]))
 print()
+
+# Improvement
+
+ht_sort = ht_lines
+print(sorted(ht_sort, key=lambda ht_val: ht_val.split()[2], reverse=True))
 
 
 """
