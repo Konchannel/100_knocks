@@ -253,6 +253,10 @@ if split_group_num > 0:
 """
 17. １列目の文字列の異なり
 1列目の文字列の種類（異なる文字列の集合）を求めよ．確認にはsort, uniqコマンドを用いよ．
+==============================
+Improvement:
+そもそも、問題文の読み間違えがあった。一列目を一行目に空目していた。こういうとこ慎重にいかなきゃなーと毎回思ってできてない。次こそは！
+set使うのは変わらず。split()の時点でlistが返却されるのがわかるので、いきなりスライス使いだせる。素敵記法に感じた。
 """
 
 # ht_lines = read_hightemp()
@@ -261,6 +265,15 @@ for ht_line in ht_lines:
     print(set(ht_line))
     print()
     break
+
+# Improvement
+
+ken_unique = set()
+
+for ht_line in ht_lines:
+    ken_unique.add(ht_line.split()[0])
+
+print(ken_unique)
 
 """
 18. 各行を3コラム目の数値の降順にソート
