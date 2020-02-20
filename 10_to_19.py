@@ -307,6 +307,10 @@ print(sorted(ht_sort, key=lambda ht_val: ht_val.split()[2], reverse=True))
 """
 19. 各行の1コラム目の文字列の出現頻度を求め，出現頻度の高い順に並べる
 各行の1列目の文字列の出現頻度を求め，その高い順に並べて表示せよ．確認にはcut, uniq, sortコマンドを用いよ．
+==============================
+Improvement:
+問題の読み違えがひどかった。県の出現数の降順、なのに各行の文字の頻出数で出してた。それはそれで難しいぞ。
+使うモジュールは同じでいけたのでちょっと得した気持ち。
 """
 
 import collections
@@ -315,3 +319,13 @@ for ht_line in ht_lines:
     ht_counter = collections.Counter(ht_line)
     values, counts = zip(*ht_counter.most_common())
     print(values)
+
+# Improvement
+
+kens = []
+
+for ht_line in ht_lines:
+    kens.append(ht_line.split()[0])
+
+print(collections.Counter(kens).most_common())
+
