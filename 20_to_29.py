@@ -11,8 +11,14 @@ Wikipedia記事のJSONファイルを読み込み，「イギリス」に関す�
 """
 
 import gzip
-with gzip.open("./jawiki-country.json.gz", mode="rt", encoding="utf-8") as jawiki_text:
-    print(jawiki_text.read())
+import json
+
+with gzip.open("./jawiki-country.json.gz", "rt", "utf-8") as jawiki_text:
+    for line in jawiki_text:
+        data_json = json.loads(line)
+        if data_json['title'] is 'イギリス':
+            print(data_json['text'])
+            break
 
 """
 21. カテゴリ名を含む行を抽出
