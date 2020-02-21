@@ -13,10 +13,10 @@ Wikipedia記事のJSONファイルを読み込み，「イギリス」に関す�
 import gzip
 import json
 
-with gzip.open("./jawiki-country.json.gz", "rt", "utf-8") as jawiki_text:
+with gzip.open("./jawiki-country.json.gz", mode="rt", encoding="utf-8") as jawiki_text:
     for line in jawiki_text:
         data_json = json.loads(line)
-        if data_json['title'] is 'イギリス':
+        if data_json['title'] == 'イギリス':
             print(data_json['text'])
             break
 
