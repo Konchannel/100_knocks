@@ -23,13 +23,18 @@ with gzip.open("./jawiki-country.json.gz", mode="rt", encoding="utf-8") as jawik
         data_json = json.loads(line)
         if data_json['title'] == 'イギリス':
             print(data_json['text'])
+            base_lines = data_json['text']  # これ以降の問題で扱いやすくするため
             break
 
 """
 21. カテゴリ名を含む行を抽出
 記事中でカテゴリ名を宣言している行を抽出せよ．
 """
+print("\n===\n21\n===")
 
+for base_line in base_lines.split():
+    if 'Category:' in base_line:
+        print(base_line)
 
 """
 22. カテゴリ名の抽出
