@@ -41,6 +41,12 @@ for base_line in base_lines.split():
 記事のカテゴリ名を（行単位ではなく名前で）抽出せよ．
 """
 
+print("\n===\n22\n===")
+
+for base_line in base_lines.split():
+    if 'Category:' in base_line:
+        import re
+        print(re.sub("\[\[Category:|]]|\|\*", "", base_line))
 
 """
 23. セクション構造
