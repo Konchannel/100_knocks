@@ -17,6 +17,7 @@ gzip.openのmode引数は、何をするか（読み込み、上書きなど）�
 
 import gzip
 import json
+import re
 
 with gzip.open("./jawiki-country.json.gz", mode="rt", encoding="utf-8") as jawiki_text:
     for line in jawiki_text:
@@ -39,13 +40,16 @@ for base_line in base_lines.split():
 """
 22. カテゴリ名の抽出
 記事のカテゴリ名を（行単位ではなく名前で）抽出せよ．
+==============================
+Point:
+正規表現ほんと難しいので参考コードほぼまんまで書いてしまった。
+この章が終わるまでにマスターするぞ！
 """
 
 print("\n===\n22\n===")
 
 for base_line in base_lines.split():
     if 'Category:' in base_line:
-        import re
         print(re.sub("\[\[Category:|]]|\|\*", "", base_line))
 
 """
@@ -53,7 +57,14 @@ for base_line in base_lines.split():
 記事中に含まれるセクション名とそのレベル（例えば"== セクション名 =="なら1）を表示せよ．
 """
 
+print("\n===\n23\n===")
 
+repattern = re.compile(r'^(={2,})\s*(.+?)\s*\1.*$', re.MULTILINE + re.VERBOSE)
+results23 = repattern.findall(base_lines)
+for line in results23:
+    level = len(line[0]) - 1
+    print('{indent}{sect}({level})'.format(
+        indent='\t' * (level - 1), sect=line[1], level=level))
 
 """
 24. ファイル参照の抽出
