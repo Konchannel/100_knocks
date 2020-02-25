@@ -71,7 +71,11 @@ for line in results23:
 記事から参照されているメディアファイルをすべて抜き出せ．
 """
 
+print("\n===\n24\n===")
 
+for base_line in base_lines.split('\n'):
+    if 'File:' in base_line or 'ファイル:' in base_line:
+        print(base_line.split(':')[1].split('|')[0].lstrip('[[ File ファイル'))
 
 """
 25. テンプレートの抽出
