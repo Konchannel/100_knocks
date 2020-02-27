@@ -31,12 +31,24 @@ with gzip.open("./jawiki-country.json.gz", mode="rt", encoding="utf-8") as jawik
 """
 21. カテゴリ名を含む行を抽出
 記事中でカテゴリ名を宣言している行を抽出せよ．
+==============================
+Improvement:
+正規表現で書いてみたらなんとなく理解できた。書いた後読み返してみたが直感的でないのであまり好きな記法ではない。
+でもできることが多いため、他のコードをキレイに保った短いコードが書けるんだと思っている。
+
+それと、リスト内法表記でprintしてみた。1行で済むのでいいね。ただこれも好きとはいえない。やっぱり直感的に理解できるコードが好きだ。
 """
 print("\n===\n21\n===")
 
 for base_line in base_lines.split():
     if 'Category:' in base_line:
         print(base_line)
+
+# Improvement
+
+print("\n===\n21 -Improvement\n===")
+pattern21 = re.compile('^(.*\[\[Category:.*\]\].*)$', re.MULTILINE)
+[print(x) for x in pattern21.findall(base_lines)]
 
 """
 22. カテゴリ名の抽出
@@ -102,7 +114,7 @@ for n in split_lines:
         dict_25[m[0]] = m[1]
 
 for k, L in dict_25.items():
-    print(('{0} : {1}').format(k, L))
+    print('{0} : {1}'.format(k, L))
 
 """
 26. 強調マークアップの除去
