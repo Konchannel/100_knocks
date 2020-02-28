@@ -57,6 +57,9 @@ pattern21 = re.compile('^(.*\[\[Category:.*\]\].*)$', re.MULTILINE)
 Point:
 正規表現ほんと難しいので参考コードほぼまんまで書いてしまった。
 この章が終わるまでにマスターするぞ！ひとまず1周書いてみてから正規表現の書き方でもう1週するぞ！！
+
+Improvement:
+非貪欲マッチというものを覚えた。キャプチャ対象外の文字列も理解したので、出来る幅がかなり広かった！
 """
 
 print("\n===\n22\n===")
@@ -64,6 +67,12 @@ print("\n===\n22\n===")
 for base_line in base_lines.split():
     if 'Category:' in base_line:
         print(re.sub("\[\[Category:|]]|\|\*", "", base_line))
+
+# Improvement
+
+print("\n===\n22 -Improvement\n===")
+pattern22 = re.compile('^.*\[\[Category:(.*?)(?:\|.*)?\]\].*$', re.MULTILINE)
+[print(x) for x in pattern22.findall(base_lines)]
 
 """
 23. セクション構造
