@@ -77,6 +77,10 @@ pattern22 = re.compile('^.*\[\[Category:(.*?)(?:\|.*)?\]\].*$', re.MULTILINE)
 """
 23. セクション構造
 記事中に含まれるセクション名とそのレベル（例えば"== セクション名 =="なら1）を表示せよ．
+==============================
+Point:
+コードで書くとアホほど汚くなりそうだったので正規表現を調べながら書いた。
+後方参照というものを知った。前にマッチしたものと同じパターンを使えるとのこと。ただし1始まりな点に注意が必要。
 """
 
 print("\n===\n23\n===")
@@ -94,6 +98,14 @@ for line in results23:
 ==============================
 Point:
 stripは空白区切りで複数文字列の除去ができる。知らなかった。
+
+Improvement:
+今度は独力で正規表現を書いてみた。キレイな記述が出来たと思う。
+非貪欲マッチの重要性をひしひしと感じることができた。
+
+Improvement 02:
+めっちゃくちゃキレイ。正規表現の美しさを垣間見た。
+さっき自分で書いたコードから無駄をそぎ落としたミニマルなコード。読みやすく直感的。はーすげぇ。
 """
 
 print("\n===\n24\n===")
@@ -101,6 +113,18 @@ print("\n===\n24\n===")
 for base_line in base_lines.split('\n'):
     if 'File:' in base_line or 'ファイル:' in base_line:
         print(base_line.split(':')[1].split('|')[0].lstrip('[[ File ファイル'))
+
+# Improvement
+
+print("\n===\n24 -Improvement\n===")
+pattern24 = re.compile('^.*?(?:File:|ファイル:)(.*?)\|.*$', re.MULTILINE)
+[print(x) for x in pattern24.findall(base_lines)]
+
+# Improvement 02
+
+print("\n===\n24 -Improvement 02\n===")
+pattern24 = re.compile('(?:File|ファイル):(.+?)\|')
+[print(x) for x in pattern24.findall(base_lines)]
 
 """
 25. テンプレートの抽出
