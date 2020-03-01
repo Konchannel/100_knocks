@@ -133,6 +133,9 @@ pattern24 = re.compile('(?:File|ファイル):(.+?)\|')
 Point:
 split使いすぎ問題。'{{基礎情報 国'　から　'}}\n'　までを取ってくるうまいやり方が浮かばなかった。
 こういう時にこそ正規表現が役立つんだなぁと思います。
+
+Improvement:
+肯定の先読みという指定方法を学びました。
 """
 
 print("\n===\n25\n===")
@@ -148,6 +151,22 @@ for n in split_lines:
 
 for k, L in dict_25.items():
     print('{0} : {1}'.format(k, L))
+
+# Improvement
+
+print("\n===\n25 -Improvement\n===")
+pattern25 = re.compile('\{\{基礎情報 国\n(.*?)\}\}\n', re.MULTILINE + re.DOTALL)
+capture_range25 = pattern25.findall(base_lines)
+
+capture25 = re.compile('\|(.+?)\s=\s(.+?)(?=\n\|)|(?=\n$)', re.MULTILINE + re.DOTALL)
+word_list25 = capture25.findall(capture_range25[0])
+
+dict_25 = {}
+
+for field in word_list25:
+    dict_25[field[0]] = field[1]
+
+print(dict_25)
 
 """
 26. 強調マークアップの除去
