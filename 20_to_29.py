@@ -171,9 +171,25 @@ for field in word_list25:
 """
 26. 強調マークアップの除去
 25の処理時に，テンプレートの値からMediaWikiの強調マークアップ（弱い強調，強調，強い強調のすべて）を除去してテキストに変換せよ（参考: マークアップ早見表）．
+==============================
+Point:
+re.sub()で置換できた。正規表現が使える置換はコードがシンプルでいい！
+それと、dictの最後に何も値が入ってないitemがあると気付き、除去のpass文を入れている。
 """
 
+print("\n===\n26\n===")
+quot_remove26 = re.sub('\'{2,5}', '', capture_range25[0])
+captures26 = capture25.findall(quot_remove26)
 
+dict_26 = {}
+
+for field in captures26:
+    if field[0] == '':
+        pass
+    else:
+        dict_26[field[0]] = field[1]
+
+[print(x + ' : ' + y) for x, y in dict_26.items()]
 
 """
 27. 内部リンクの除去
