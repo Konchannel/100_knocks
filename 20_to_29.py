@@ -193,9 +193,27 @@ for field in captures26:
 
 """
 27. 内部リンクの除去
-26の処理に加えて，テンプレートの値からMediaWikiの内部リンクマークアップを除去し，テキストに変換せよ（参考: マークアップ早見表）．
+26の処理に加えて，テンプレートの値からMediaWikiの内部リンクマークアップを除去し，テキストに変換せよ（参考: マークアップ早見表）
+==============================
+Point:．
+後方参照、sub、非貪欲マッチ、、、と今までのボスラッシュのような問題だった。
+特にr'\1'の指定部分は、正規表現内でのバックスラッシュの扱いを忘れていたためちょっとつまづいた（'\\1'としても良い）
 """
 
+print("\n===\n27\n===")
+
+markup_remove27 = re.sub('\[\[(?:[^|]*?\|)??([^|]*?)\]\]', r'\1', ''.join(quot_remove26))
+captures27 = capture25.findall(markup_remove27)
+
+dict_27 = {}
+
+for field in captures27:
+    if field[0] == '':
+        pass
+    else:
+        dict_27[field[0]] = field[1]
+
+[print(x + ' : ' + ''.join(y)) for x, y in dict_27.items()]
 
 
 """
