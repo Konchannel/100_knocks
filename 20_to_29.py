@@ -219,9 +219,25 @@ for field in captures27:
 """
 28. MediaWikiマークアップの除去
 27の処理に加えて，テンプレートの値からMediaWikiマークアップを可能な限り除去し，国の基本情報を整形せよ．
+==============================
+Point:．
+<br>,<ref>などのタグ、[http~][//~]などのリンク、{{lang|~|~}}などなどMediaWikiマークアップを除去した。
 """
 
+print("\n===\n28\n===")
+markup_remove28 = re.sub('<.*?>|\[[http:|//]?.*?\]', '', markup_remove27)
+lang_remove28 = re.sub('\*?{{lang\|.*?\|(.*?)}}', r'\1', markup_remove28)
+captures28 = capture25.findall(lang_remove28)
 
+dict_28 = {}
+
+for field in captures28:
+    if field[0] == '':
+        pass
+    else:
+        dict_28[field[0]] = field[1]
+
+[print(x + ' : ' + ''.join(y)) for x, y in dict_28.items()]
 
 """
 29. 国旗画像のURLを取得する
