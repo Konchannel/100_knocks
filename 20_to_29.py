@@ -18,7 +18,7 @@ gzip.openのmode引数は、何をするか（読み込み、上書きなど）�
 import gzip
 import json
 import re
-import math
+import requests
 
 with gzip.open("./jawiki-country.json.gz", mode="rt", encoding="utf-8") as jawiki_text:
     for line in jawiki_text:
@@ -242,4 +242,22 @@ for field in captures28:
 """
 29. 国旗画像のURLを取得する
 テンプレートの内容を利用し，国旗画像のURLを取得せよ．（ヒント: MediaWiki APIのimageinfoを呼び出して，ファイル参照をURLに変換すればよい）
+==============================
+Point:．
+get_requestに、任意のパラメータ["iiprop": "url"]を付け足したらUrlが取得できた。
+この仕様はサンプルコードには書いてなかったのでちょっと苦戦した。
+でも取れてみたらあっけなかった。しかも正規表現使わなかったのでちょっと寂しい気持ち。
 """
+
+print("\n===\n29\n===")
+
+us_flag_name = dict_28['国旗画像']
+
+
+wiki_api_result = requests.get(url="https://en.wikipedia.org/w/api.php", params={
+    "action": "query", "format": "json",
+    "prop": "imageinfo", "titles": "File:" + us_flag_name,
+    "iiprop": "url"
+    })
+
+print(wiki_api_result.json()['query']['pages'].popitem()[1]['imageinfo'][0]['url'])
