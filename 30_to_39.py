@@ -5,6 +5,17 @@
 
 30. 形態素解析結果の読み込み
 形態素解析結果（neko.txt.mecab）を読み込むプログラムを実装せよ．ただし，各形態素は表層形（surface），基本形（base），品詞（pos），品詞細分類1（pos1）をキーとするマッピング型に格納し，1文を形態素（マッピング型）のリストとして表現せよ．第4章の残りの問題では，ここで作ったプログラムを活用せよ．
+==============================
+point:
+本家サイトのneko.txtは文字化けしていたため、青空文庫より直接全文引っ張ってきた。
+正直これが面倒だった。。。
+
+途中で入る if split_mecab[0] == "" or len(split_mecab) < 8: のif文は、
+['', '']
+['EOS', '']
+['', '記号', '一般', '*', '*', '*', '*', '*', '']
+['', '', '記号', '空白', '*', '*', '*', '*', '', '', '', '', '', '', '']
+を除外する為。
 """
 
 import codecs
@@ -22,13 +33,26 @@ with codecs.open("./neko.txt.mecab", 'r', 'utf-8') as mecab_nekos:
 
     for mecab_neko in mecab_nekos:
         split_mecab = re.split(",|\s", mecab_neko)
-        if split_mecab[0] == "":
+
+        if split_mecab[0] == "" or len(split_mecab) < 8:
             pass
         else:
-            mecab_neko_dict = {}
-            mecab_neko_dict['surface'] = split_mecab[0]
+            mecab_neko_dict = {'surface': split_mecab[0],
+                               'base': split_mecab[7],
+                               'pos': split_mecab[1],
+                               'pos1': split_mecab[2]}
+
+            mecab_neko_dicts.append(mecab_neko_dict)
 
 
+    """
+    結果表示。膨大になるため、10行だけ表示する。
+    """
+    for index, neko in enumerate(mecab_neko_dicts):
+        if index > 10:
+            break
+        else:
+            print(neko)
 
 """
 31. 動詞
