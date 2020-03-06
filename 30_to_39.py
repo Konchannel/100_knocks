@@ -7,6 +7,28 @@
 形態素解析結果（neko.txt.mecab）を読み込むプログラムを実装せよ．ただし，各形態素は表層形（surface），基本形（base），品詞（pos），品詞細分類1（pos1）をキーとするマッピング型に格納し，1文を形態素（マッピング型）のリストとして表現せよ．第4章の残りの問題では，ここで作ったプログラムを活用せよ．
 """
 
+import codecs
+import MeCab
+import re
+
+print("\n===\n30\n===")
+
+with codecs.open("./neko.txt", 'r', 'utf-8') as neko_txt,\
+    codecs.open("./neko.txt.mecab", 'w', 'utf-8') as mecab_nekos:
+    mecab_nekos.write(MeCab.Tagger().parse(neko_txt.read()))
+
+with codecs.open("./neko.txt.mecab", 'r', 'utf-8') as mecab_nekos:
+    mecab_neko_dicts = []
+
+    for mecab_neko in mecab_nekos:
+        split_mecab = re.split(",|\s", mecab_neko)
+        if split_mecab[0] == "":
+            pass
+        else:
+            mecab_neko_dict = {}
+            mecab_neko_dict['surface'] = split_mecab[0]
+
+
 
 """
 31. 動詞
