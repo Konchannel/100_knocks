@@ -28,8 +28,8 @@ with codecs.open("./neko.txt", 'r', 'utf-8') as neko_txt,\
     codecs.open("./neko.txt.mecab", 'w', 'utf-8') as mecab_nekos:
     mecab_nekos.write(MeCab.Tagger().parse(neko_txt.read()))
 
+mecab_neko_dicts = []
 with codecs.open("./neko.txt.mecab", 'r', 'utf-8') as mecab_nekos:
-    mecab_neko_dicts = []
 
     for mecab_neko in mecab_nekos:
         split_mecab = re.split(",|\s", mecab_neko)
@@ -58,6 +58,12 @@ with codecs.open("./neko.txt.mecab", 'r', 'utf-8') as mecab_nekos:
 31. 動詞
 動詞の表層形をすべて抽出せよ．
 """
+
+print("\n===\n31\n===")
+
+for neko in mecab_neko_dicts:
+    if neko['pos'] == '動詞':
+        print(neko['surface'])
 
 """
 32. 動詞の原形
