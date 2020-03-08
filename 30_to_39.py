@@ -60,16 +60,27 @@ with codecs.open("./neko.txt.mecab", 'r', 'utf-8') as mecab_nekos:
 """
 
 print("\n===\n31\n===")
+dousis = []
 
 for neko in mecab_neko_dicts:
     if neko['pos'] == '動詞':
-        print(neko['surface'])
+        dousis.append(neko['surface'])
+
+print(dousis)
 
 """
 32. 動詞の原形
 動詞の原形をすべて抽出せよ．
 """
 
+print("\n===\n32\n===")
+dousis = []
+
+for neko in mecab_neko_dicts:
+    if neko['pos'] == '動詞':
+        dousis.append(neko['base'])
+
+print(dousis)
 
 """
 33. サ変名詞
