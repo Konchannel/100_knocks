@@ -87,11 +87,33 @@ print(dousis)
 サ変接続の名詞をすべて抽出せよ．
 """
 
+print("\n===\n33\n===")
+sahens = []
+
+for neko in mecab_neko_dicts:
+    if neko['pos'] == '名詞' and neko['pos1'] == 'サ変接続':
+        sahens.append(neko['base'])
+
+print(sahens)
 
 """
 34. 「AのB」
 2つの名詞が「の」で連結されている名詞句を抽出せよ．
 """
+
+print("\n===\n34\n===")
+bridge_no_list = []
+word1 = ""
+word2 = ""
+
+for neko in mecab_neko_dicts:
+    if word1['pos'] != "名詞":
+        continue
+    elif word2 == "の":
+        bridge_no_list.append(word1['base'] + word2['base'] + neko['base'])
+
+    word1 = word2
+    word2 = neko
 
 
 """
