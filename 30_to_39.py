@@ -107,9 +107,7 @@ word1 = ""
 word2 = ""
 
 for neko in mecab_neko_dicts:
-    if word1['pos'] != "名詞":
-        continue
-    elif word2 == "の":
+    if word1.get('pos') == "名詞" and word2.get('base') == "の" and neko['pos'] == "名詞":
         bridge_no_list.append(word1['base'] + word2['base'] + neko['base'])
 
     word1 = word2
