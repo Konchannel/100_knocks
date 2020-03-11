@@ -103,8 +103,8 @@ print(sahens)
 
 print("\n===\n34\n===")
 bridge_no_list = []
-word1 = ""
-word2 = ""
+word1 = {}
+word2 = {}
 
 for neko in mecab_neko_dicts:
     if word1.get('pos') == "名詞" and word2.get('base') == "の" and neko['pos'] == "名詞":
