@@ -87,6 +87,14 @@ print(dousis)
 サ変接続の名詞をすべて抽出せよ．
 """
 
+print("\n===\n33\n===")
+sahens = []
+
+for neko in mecab_neko_dicts:
+    if neko['pos'] == '名詞' and neko['pos1'] == 'サ変接続':
+        sahens.append(neko['base'])
+
+print(sahens)
 
 """
 34. 「AのB」
