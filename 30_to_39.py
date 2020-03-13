@@ -113,6 +113,7 @@ for neko in mecab_neko_dicts:
     word1 = word2
     word2 = neko
 
+print(bridge_no_list)
 
 """
 35. 名詞の連接
