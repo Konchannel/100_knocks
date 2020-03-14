@@ -16,6 +16,11 @@ point:
 ['', '記号', '一般', '*', '*', '*', '*', '*', '']
 ['', '', '記号', '空白', '*', '*', '*', '*', '', '', '', '', '', '', '']
 を除外する為。
+
+mecabのエラーについて:
+辞書をいじろうとしたときに、mecabがRunTimeErrorしか吐かなくなったことがあった。
+インストールファイルからmecabを削除し再インストールしたり、環境変数を設定しなおしたり、PyCharmのインポート先を指定しなおしたら治った。
+今後mecab自体をいじる場合はよく注意して行うべし。
 """
 
 import codecs
@@ -92,7 +97,7 @@ sahens = []
 
 for neko in mecab_neko_dicts:
     if neko['pos'] == '名詞' and neko['pos1'] == 'サ変接続':
-        sahens.append(neko['base'])
+        sahens.append(neko['surface'])
 
 print(sahens)
 
@@ -108,7 +113,7 @@ word2 = {}
 
 for neko in mecab_neko_dicts:
     if word1.get('pos') == "名詞" and word2.get('base') == "の" and neko['pos'] == "名詞":
-        bridge_no_list.append(word1['base'] + word2['base'] + neko['base'])
+        bridge_no_list.append(word1['surface'] + word2['surface'] + neko['surface'])
 
     word1 = word2
     word2 = neko
@@ -120,6 +125,7 @@ print(bridge_no_list)
 名詞の連接（連続して出現する名詞）を最長一致で抽出せよ．
 """
 
+print("\n===\n35\n===")
 
 """
 36. 単語の出現頻度
