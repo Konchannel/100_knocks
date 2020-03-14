@@ -127,6 +127,39 @@ print(bridge_no_list)
 
 print("\n===\n35\n===")
 
+max_meisis = []
+max_meisis_range = 0
+tmp_meisis = []
+tmp_meisis_range = 0
+
+for neko in mecab_neko_dicts:
+
+    # 名詞であればtmpに追加
+    if neko['pos'] == "名詞":
+        tmp_meisis_range += 1
+        tmp_meisis.append(neko['surface'])
+    # 名詞の連続が終わって、連続値が最大値より小さかった場合
+    elif max_meisis_range > tmp_meisis_range:
+        tmp_meisis = []
+        tmp_meisis_range = 0
+    # 名詞の連続が終わって、連続値が最大値と同じだった場合、それをmaxに追加
+    elif max_meisis_range == tmp_meisis_range:
+        max_meisis.append(["".join(tmp_meisis)])
+        tmp_meisis = []
+        tmp_meisis_range = 0
+    # 名詞の連続が終わって、連続値が最大値より大きかった場合、それをmaxに上書き
+    elif max_meisis_range < tmp_meisis_range:
+        max_meisis = ["".join(tmp_meisis)]
+        max_meisis_range = tmp_meisis_range
+        tmp_meisis = []
+        tmp_meisis_range = 0
+    # 名詞以外はスルー
+    else:
+        continue
+
+print(max_meisis)
+print(max_meisis_range)
+
 """
 36. 単語の出現頻度
 文章中に出現する単語とその出現頻度を求め，出現頻度の高い順に並べよ．
