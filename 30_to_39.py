@@ -26,6 +26,7 @@ mecabのエラーについて:
 import codecs
 import MeCab
 import re
+from collections import Counter
 
 print("\n===\n30\n===")
 
@@ -168,8 +169,19 @@ print(max_meisis_range)
 """
 36. 単語の出現頻度
 文章中に出現する単語とその出現頻度を求め，出現頻度の高い順に並べよ．
+==============================
+point:
+Counterにstrを渡すと、各文字にバラされて、文字の出現頻度が取れる。
+今回は単語で渡したかったため、[]で囲んで、要素1のlistとして渡している。
 """
 
+print("\n===\n36\n===")
+words = Counter()
+
+for neko in mecab_neko_dicts:
+    words.update([neko['surface']])
+
+print(words.most_common())
 
 """
 37. 頻度上位10語
