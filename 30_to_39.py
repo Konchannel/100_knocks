@@ -28,6 +28,7 @@ import MeCab
 import re
 from collections import Counter
 import matplotlib.pyplot as plt
+import japanize_matplotlib
 
 print("\n===\n30\n===")
 
@@ -187,13 +188,18 @@ print(words.most_common())
 """
 37. 頻度上位10語
 出現頻度が高い10語とその出現頻度をグラフ（例えば棒グラフなど）で表示せよ．
+==============================
+point:
+matplotlibの日本語対応は、japanize_matplotlibをインポートすることでこなしている。
+出力結果は"result_imgs/37.PNG"に保存してあるのでそちらから。
 """
 
 print("\n===\n37\n===")
 
 words_top10, words_count = zip(*words.most_common(10))
 
-plt.bar(words_top10, words_count, fontname='HGGothicM')
+plt.bar(words_top10, words_count)
+plt.grid(axis='y')
 plt.show()
 
 """
