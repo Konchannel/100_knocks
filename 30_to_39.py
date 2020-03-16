@@ -27,6 +27,7 @@ import codecs
 import MeCab
 import re
 from collections import Counter
+import matplotlib.pyplot as plt
 
 print("\n===\n30\n===")
 
@@ -188,6 +189,12 @@ print(words.most_common())
 出現頻度が高い10語とその出現頻度をグラフ（例えば棒グラフなど）で表示せよ．
 """
 
+print("\n===\n37\n===")
+
+words_top10, words_count = zip(*words.most_common(10))
+
+plt.bar(words_top10, words_count, fontname='HGGothicM')
+plt.show()
 
 """
 38. ヒストグラム
