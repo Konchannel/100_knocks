@@ -224,3 +224,12 @@ print(Counter(words.values()).most_common())
 単語の出現頻度順位を横軸，その出現頻度を縦軸として，両対数グラフをプロットせよ．
 """
 
+print("\n===\n39\n===")
+x = list(map(lambda xx: xx[1], words.most_common()))
+
+plt.plot(x, range(1, len(x)+1))
+log_graph = plt.gca()
+log_graph.set_yscale('log')  # y軸をlogスケールで描く
+log_graph.set_xscale('log')
+
+plt.show()
