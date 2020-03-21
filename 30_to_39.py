@@ -209,6 +209,7 @@ plt.show()
 point:
 全単語をカウントすると、1度しか出ない単語が多すぎて他グラフが極小で見えない。
 そのため、今回は1~10回登場した単語のみを表示している。
+出力結果は"result_imgs/38.PNG"
 """
 
 print("\n===\n38\n===")
@@ -222,6 +223,9 @@ print(Counter(words.values()).most_common())
 """
 39. Zipfの法則
 単語の出現頻度順位を横軸，その出現頻度を縦軸として，両対数グラフをプロットせよ．
+==============================
+point:
+出力結果は"result_imgs/39.PNG"
 """
 
 print("\n===\n39\n===")
@@ -229,7 +233,7 @@ x = list(map(lambda xx: xx[1], words.most_common()))
 
 plt.plot(x, range(1, len(x)+1))
 log_graph = plt.gca()
-log_graph.set_yscale('log')  # y軸をlogスケールで描く
+log_graph.set_yscale('log')
 log_graph.set_xscale('log')
 
 plt.show()
