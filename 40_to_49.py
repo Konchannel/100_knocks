@@ -4,16 +4,19 @@
 
 40. 係り受け解析結果の読み込み（形態素）
 形態素を表すクラスMorphを実装せよ．このクラスは表層形（surface），基本形（base），品詞（pos），品詞細分類1（pos1）をメンバ変数に持つこととする．さらに，CaboChaの解析結果（neko.txt.cabocha）を読み込み，各文をMorphオブジェクトのリストとして表現し，3文目の形態素列を表示せよ．
+==============================
+point:
+neko.txtを丸ごと係り受け解析にかけようとすると、バッファオーバーフローで失敗したため、一部切り取ったkitten.txtを使用することにする。
 """
 
 import CaboCha
 
 print("\n===\n40\n===")
 
-with open('./neko.txt', mode='r', encoding='utf-8') as neko,\
-     open('./neko.txt.cabocha.txt', mode='w', encoding='utf-8') as cabo_neko:
+with open('./kitten.txt', mode='r', encoding='utf-8') as kitten,\
+     open('./kitten.txt.cabocha.txt', mode='w', encoding='utf-8') as cabo_kitten:
 
-    cabo_neko.write(CaboCha.Parser().parseToString(neko.read()))
+    cabo_kitten.write(CaboCha.Parser().parseToString(kitten.read()))
 
 """
 41. 係り受け解析結果の読み込み（文節・係り受け）
