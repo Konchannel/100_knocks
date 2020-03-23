@@ -7,14 +7,13 @@
 """
 
 import CaboCha
-import codecs
 
 print("\n===\n40\n===")
 
-with codecs.open('./neko.txt', 'r', 'utf-8') as neko,\
-     codecs.open('./neko.txt.cabocha', 'w', 'utf-8') as cabo_neko:
+with open('./neko.txt', mode='r', encoding='utf-8') as neko,\
+     open('./neko.txt.cabocha.txt', mode='w', encoding='utf-8') as cabo_neko:
 
-    print(CaboCha.Parser.parseToString(neko))
+    cabo_neko.write(CaboCha.Parser().parseToString(neko.read()))
 
 """
 41. 係り受け解析結果の読み込み（文節・係り受け）
