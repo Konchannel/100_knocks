@@ -7,6 +7,7 @@
 ==============================
 point:
 neko.txtを丸ごと係り受け解析にかけようとすると、バッファオーバーフローで失敗したため、一部切り取ったkitten.txtを使用することにする。
+parseToStringはまだ実行できるが、parse().toString()は常に失敗する。マシンスペック不足によるものと思われるため、この章は一旦諦める。
 """
 
 import CaboCha
@@ -16,7 +17,8 @@ print("\n===\n40\n===")
 with open('./kitten.txt', mode='r', encoding='utf-8') as kitten,\
      open('./kitten.txt.cabocha.txt', mode='w', encoding='utf-8') as cabo_kitten:
 
-    cabo_kitten.write(CaboCha.Parser().parseToString(kitten.read()))
+    for line in kitten.read().split("。"):
+        cabo_kitten.write(CaboCha.Parser().parseToString(line + "。"))
 
 """
 41. 係り受け解析結果の読み込み（文節・係り受け）
